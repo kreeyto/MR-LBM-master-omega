@@ -10,7 +10,8 @@ void saveMacr(
     dfloat* ux,
     dfloat* uy,
     dfloat* uz,
-    dfloat* omega,
+    dfloat* omega, 
+		// dfloat* omegaVar,
     NON_NEWTONIAN_FLUID_PARAMS_DECLARATION
     #ifdef SECOND_DIST 
     dfloat* C,
@@ -34,6 +35,7 @@ size_t indexMacr;
                 uy[indexMacr]  = h_fMom[idxMom(x%BLOCK_NX, y%BLOCK_NY, z%BLOCK_NZ, M_UY_INDEX, x/BLOCK_NX, y/BLOCK_NY, z/BLOCK_NZ)];
                 uz[indexMacr]  = h_fMom[idxMom(x%BLOCK_NX, y%BLOCK_NY, z%BLOCK_NZ, M_UZ_INDEX, x/BLOCK_NX, y/BLOCK_NY, z/BLOCK_NZ)];
                 omega[indexMacr] = h_fMom[idxMom(x%BLOCK_NX, y%BLOCK_NY, z%BLOCK_NZ, M_OMEGA_INDEX, x/BLOCK_NX, y/BLOCK_NY, z/BLOCK_NZ)]; 
+								// omegaVar?
 
                 #ifdef NON_NEWTONIAN_FLUID
                     omega[indexMacr] = h_fMom[idxMom(x%BLOCK_NX, y%BLOCK_NY, z%BLOCK_NZ, M_OMEGA_INDEX, x/BLOCK_NX, y/BLOCK_NY, z/BLOCK_NZ)]; 
@@ -375,7 +377,7 @@ void saveTreatData(std::string fileName, std::string dataString, int step)
     #endif
 }
 
-/*
+/* check
 __host__
 void loadMoments(
     dfloat* h_fMom,
