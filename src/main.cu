@@ -22,7 +22,7 @@ int main() {
     dfloat* uy;
     dfloat* uz;
     dfloat* omega;
-    
+		// dfloat* omegaVar; ? 
     
     #ifdef NON_NEWTONIAN_FLUID
     dfloat* omega;
@@ -81,7 +81,7 @@ int main() {
     randomNumbers = (float**)malloc(sizeof(float*));
 
     allocateHostMemory(
-        &h_fMom, &rho, &ux, &uy, &uz, &omega
+        &h_fMom, &rho, &ux, &uy, &uz, &omega //, &omegaVar?
         NON_NEWTONIAN_FLUID_PARAMS_PTR
         SECOND_DIST_PARAMS_PTR
         PARTICLE_TRACER_PARAMS_PTR(h_)
@@ -209,7 +209,7 @@ int main() {
                     #ifdef SECOND_DIST 
                     C,
                     #endif 
-                    NODE_TYPE_SAVE_PARAMS BC_FORCES_PARAMS(h_) step);
+                    NODE_TYPE_SAVE_PARAMS BC_FORCES_PARAMS(h_) step); // omegaVar ? 
                 }
             //}
 
@@ -248,7 +248,7 @@ int main() {
     #ifdef SECOND_DIST 
     C,
     #endif 
-    NODE_TYPE_SAVE_PARAMS BC_FORCES_PARAMS(PREFIX) step);
+    NODE_TYPE_SAVE_PARAMS BC_FORCES_PARAMS(PREFIX) step); // omegaVar?
 
     #ifdef PARTICLE_TRACER
         checkCudaErrors(cudaMemcpy(h_particlePos, d_particlePos, sizeof(dfloat3)*NUM_PARTICLES, cudaMemcpyDeviceToHost)); 
@@ -290,6 +290,7 @@ int main() {
     cudaFree(uy);
     cudaFree(uz);
     cudaFree(omega);
+		// cudaFree(omegaVar); ?
 
     #ifdef SECOND_DIST 
     cudaFree(C);
