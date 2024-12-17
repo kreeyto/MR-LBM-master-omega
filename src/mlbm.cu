@@ -49,7 +49,9 @@ __global__ void gpuMomCollisionStream(
         dfloat omegaVar_d2 = omegaVar / 2;
         dfloat tt_omega_t3 = tt_omegaVar * 3;
     #else
-        const dfloat omegaVar = OMEGA;
+				// normalmente aqui estaria a linha comentada
+        // const dfloat omegaVar = OMEGA;
+				dfloat omegaVar = fMom[idxMom(threadIdx.x, threadIdx.y, threadIdx.z, M_OMEGA_INDEX, blockIdx.x, blockIdx.y, blockIdx.z)];
         const dfloat t_omegaVar = 1 - omegaVar;
         const dfloat tt_omegaVar = 1 - omegaVar/2;
         const dfloat omegaVar_d2 = omegaVar / 2;
