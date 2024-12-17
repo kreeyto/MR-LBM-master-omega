@@ -243,7 +243,7 @@ void interfaceMalloc(ghostInterfaceData &ghostInterface)
 
 __host__
 void allocateHostMemory(
-    dfloat** h_fMom, dfloat** rho, dfloat** ux, dfloat** uy, dfloat** uz, dfloat** omega
+    dfloat** h_fMom, dfloat** rho, dfloat** ux, dfloat** uy, dfloat** uz, dfloat** omega //, dfloat** omegaVar?
     NON_NEWTONIAN_FLUID_PARAMS_DECLARATION_PTR
     SECOND_DIST_PARAMS_DECLARATION_PTR
     PARTICLE_TRACER_PARAMS_DECLARATION_PTR(h_)
@@ -257,6 +257,7 @@ void allocateHostMemory(
     checkCudaErrors(cudaMallocHost((void**)uy, MEM_SIZE_SCALAR));
     checkCudaErrors(cudaMallocHost((void**)uz, MEM_SIZE_SCALAR));
     checkCudaErrors(cudaMallocHost((void**)omega, MEM_SIZE_SCALAR));
+    checkCudaErrors(cudaMallocHost((void**)omegaVar, MEM_SIZE_SCALAR));
 
     #ifdef NON_NEWTONIAN_FLUID
     checkCudaErrors(cudaMallocHost((void**)omega, MEM_SIZE_SCALAR));
