@@ -243,7 +243,7 @@ void interfaceMalloc(ghostInterfaceData &ghostInterface)
 
 __host__
 void allocateHostMemory(
-    dfloat** h_fMom, dfloat** rho, dfloat** ux, dfloat** uy, dfloat** uz, dfloat** omega //, dfloat** omegaVar?
+    dfloat** h_fMom, dfloat** rho, dfloat** ux, dfloat** uy, dfloat** uz, dfloat** omega, dfloat** omegaVar // ?
     NON_NEWTONIAN_FLUID_PARAMS_DECLARATION_PTR
     SECOND_DIST_PARAMS_DECLARATION_PTR
     PARTICLE_TRACER_PARAMS_DECLARATION_PTR(h_)

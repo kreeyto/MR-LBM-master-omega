@@ -11,7 +11,7 @@ void saveMacr(
     dfloat* uy,
     dfloat* uz,
     dfloat* omega, 
-		// dfloat* omegaVar,
+    dfloat* omegaVar,
     NON_NEWTONIAN_FLUID_PARAMS_DECLARATION
     #ifdef SECOND_DIST 
     dfloat* C,
@@ -35,7 +35,7 @@ size_t indexMacr;
                 uy[indexMacr]  = h_fMom[idxMom(x%BLOCK_NX, y%BLOCK_NY, z%BLOCK_NZ, M_UY_INDEX, x/BLOCK_NX, y/BLOCK_NY, z/BLOCK_NZ)];
                 uz[indexMacr]  = h_fMom[idxMom(x%BLOCK_NX, y%BLOCK_NY, z%BLOCK_NZ, M_UZ_INDEX, x/BLOCK_NX, y/BLOCK_NY, z/BLOCK_NZ)];
                 omega[indexMacr] = h_fMom[idxMom(x%BLOCK_NX, y%BLOCK_NY, z%BLOCK_NZ, M_OMEGA_INDEX, x/BLOCK_NX, y/BLOCK_NY, z/BLOCK_NZ)]; 
-								// omegaVar?
+                // omegaVar[indexMacr] = h_fMom[idxMom(x%BLOCK_NX, y%BLOCK_NY, z%BLOCK_NZ, M_OMEGA_INDEX, x/BLOCK_NX, y/BLOCK_NY, z/BLOCK_NZ)]; // maybe not
 
                 #ifdef NON_NEWTONIAN_FLUID
                     omega[indexMacr] = h_fMom[idxMom(x%BLOCK_NX, y%BLOCK_NY, z%BLOCK_NZ, M_OMEGA_INDEX, x/BLOCK_NX, y/BLOCK_NY, z/BLOCK_NZ)]; 
@@ -88,7 +88,7 @@ size_t indexMacr;
 
     // Names of files
     std::string strFileRho, strFileUx, strFileUy, strFileUz;
-    std::string strFileOmega;
+    std::string strFileOmega, strFileOmegaVar;
     std::string strFileC;
     std::string strFileBc; 
     std::string strFileFx, strFileFy, strFileFz;
@@ -98,6 +98,7 @@ size_t indexMacr;
     strFileUy = getVarFilename("uy", nSteps, ".bin");
     strFileUz = getVarFilename("uz", nSteps, ".bin");
     strFileOmega = getVarFilename("omega", nSteps, ".bin");
+    strFileOmegaVar = getVarFilename("omegaVar", nSteps, ".bin");
     #ifdef NON_NEWTONIAN_FLUID
     strFileOmega = getVarFilename("omega", nSteps, ".bin");
     #endif
@@ -117,7 +118,8 @@ size_t indexMacr;
     saveVarBin(strFileUx, ux, MEM_SIZE_SCALAR, false);
     saveVarBin(strFileUy, uy, MEM_SIZE_SCALAR, false);
     saveVarBin(strFileUz, uz, MEM_SIZE_SCALAR, false);
-    saveVarBin(strFileOmega, omega, MEM_SIZE_SCALAR, false);
+    saveVarBin(strFileOmega, omega, MEM_SIZE_SCALAR, false);   
+    saveVarBin(strFileOmegaVar, omegaVar, MEM_SIZE_SCALAR, false);     
     #ifdef NON_NEWTONIAN_FLUID
     saveVarBin(strFileOmega, omega, MEM_SIZE_SCALAR, false);
     #endif

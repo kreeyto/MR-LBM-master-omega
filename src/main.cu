@@ -22,7 +22,7 @@ int main() {
     dfloat* uy;
     dfloat* uz;
     dfloat* omega;
-		// dfloat* omegaVar; ? 
+    dfloat* omegaVar; 
     
     #ifdef NON_NEWTONIAN_FLUID
     dfloat* omega;
@@ -81,7 +81,7 @@ int main() {
     randomNumbers = (float**)malloc(sizeof(float*));
 
     allocateHostMemory(
-        &h_fMom, &rho, &ux, &uy, &uz, &omega //, &omegaVar?
+        &h_fMom, &rho, &ux, &uy, &uz, &omega, &omegaVar // ?
         NON_NEWTONIAN_FLUID_PARAMS_PTR
         SECOND_DIST_PARAMS_PTR
         PARTICLE_TRACER_PARAMS_PTR(h_)
@@ -205,7 +205,7 @@ int main() {
                 if(console_flush){fflush(stdout);}
                 //if(step > N_STEPS - 14000){
                 if(!ONLY_FINAL_MACRO){
-                    saveMacr(h_fMom,rho,ux,uy,uz,omega, NON_NEWTONIAN_FLUID_PARAMS
+                    saveMacr(h_fMom,rho,ux,uy,uz,omega,omegaVar, NON_NEWTONIAN_FLUID_PARAMS
                     #ifdef SECOND_DIST 
                     C,
                     #endif 
@@ -244,7 +244,7 @@ int main() {
 
     if(console_flush){fflush(stdout);}
     
-    saveMacr(h_fMom,rho,ux,uy,uz,omega, NON_NEWTONIAN_FLUID_PARAMS 
+    saveMacr(h_fMom,rho,ux,uy,uz,omega,omegaVar, NON_NEWTONIAN_FLUID_PARAMS 
     #ifdef SECOND_DIST 
     C,
     #endif 
@@ -290,7 +290,7 @@ int main() {
     cudaFree(uy);
     cudaFree(uz);
     cudaFree(omega);
-		// cudaFree(omegaVar); ?
+    cudaFree(omegaVar);
 
     #ifdef SECOND_DIST 
     cudaFree(C);

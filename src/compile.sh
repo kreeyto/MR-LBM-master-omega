@@ -1,3 +1,4 @@
+#!/bin/bash
 # CC=86
 
 # Set CC if it's not already defined

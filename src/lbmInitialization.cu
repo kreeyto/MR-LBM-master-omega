@@ -37,7 +37,7 @@ __global__ void gpuInitialization_mom(
     size_t index = idxScalarGlobal(x, y, z);
 
     //first moments
-    dfloat rho, ux, uy, uz, omega; // omegaVar?
+    dfloat rho, ux, uy, uz, omega, omegaVar; // omegaVar?
     #ifdef NON_NEWTONIAN_FLUID
     dfloat omega;
     #endif

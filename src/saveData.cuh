@@ -94,7 +94,7 @@ void loadVarBin(
 *        so the variables starts on SWF and ends in NEB
 */
 __host__
-void saveMacr(dfloat* h_fMom, dfloat* rho, dfloat* ux, dfloat* uy, dfloat* uz, dfloat* omega, NON_NEWTONIAN_FLUID_PARAMS_DECLARATION
+void saveMacr(dfloat* h_fMom, dfloat* rho, dfloat* ux, dfloat* uy, dfloat* uz, dfloat* omega, dfloat* omegaVar, NON_NEWTONIAN_FLUID_PARAMS_DECLARATION
     #ifdef SECOND_DIST 
     dfloat* C,
     #endif 
